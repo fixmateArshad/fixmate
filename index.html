@@ -5,18 +5,85 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FixMate | Laptop Repair Bangalore</title>
 <style>
-body {margin:0;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f7fa;color:#222;}
-header {background:#0a3cff;color:#fff;padding:20px 16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.15);}
-header h1{margin:0;font-size:26px;}
-header p{margin:4px 0 0;font-size:16px;}
-section{padding:16px;}
-.card{background:#fff;border-radius:12px;padding:18px;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,0.08);}
-h2{margin-top:0;color:#0a3cff;}
-button{width:100%;padding:16px;font-size:17px;border:none;border-radius:10px;background:linear-gradient(90deg,#0a3cff,#0051ff);color:#fff;cursor:pointer;transition:background 0.3s;}
-button:hover{background:linear-gradient(90deg,#0051ff,#0a3cff);}
-input,select{width:100%;padding:14px;margin-top:8px;margin-bottom:14px;border-radius:8px;border:1px solid #ccc;font-size:15px;}
-.trust li{margin-bottom:8px;}
-footer{text-align:center;font-size:14px;color:#666;padding:12px;}
+/* Reset & body */
+body {
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f2f4f8;
+  color: #222;
+}
+
+/* Header */
+header {
+  background: linear-gradient(90deg, #0a3cff, #0051ff);
+  color: #fff;
+  padding: 25px 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+header h1 { margin:0; font-size:28px; font-weight:700; }
+header p { margin:5px 0 0; font-size:16px; }
+
+/* Sections */
+section { padding:20px; }
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+.card:hover { transform: translateY(-4px); }
+
+/* Headings */
+h2 { margin-top:0; color:#0a3cff; }
+
+/* Inputs & Selects */
+input, select {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
+
+/* Buttons */
+button {
+  width:100%;
+  padding:16px;
+  font-size:17px;
+  border:none;
+  border-radius:12px;
+  background: linear-gradient(90deg,#0a3cff,#0051ff);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+button:hover {
+  background: linear-gradient(90deg,#0051ff,#0a3cff);
+  transform: translateY(-2px);
+}
+
+/* Trust Section */
+.trust li { margin-bottom:10px; }
+
+/* Footer */
+footer { text-align:center; font-size:14px; color:#666; padding:15px; }
+
+/* Responsive adjustments */
+@media(max-width:400px){
+  header h1{font-size:24px;}
+  input, select, button{font-size:15px;}
+}
 </style>
 </head>
 <body>
@@ -27,6 +94,7 @@ footer{text-align:center;font-size:14px;color:#666;padding:12px;}
 </header>
 
 <section>
+<!-- Services Card -->
 <div class="card">
 <h2>Laptop Services</h2>
 <ul>
@@ -39,6 +107,7 @@ footer{text-align:center;font-size:14px;color:#666;padding:12px;}
 </ul>
 </div>
 
+<!-- Booking Form Card -->
 <div class="card">
 <h2>Book Laptop Service</h2>
 <input id="name" placeholder="Your Name">
@@ -74,9 +143,10 @@ footer{text-align:center;font-size:14px;color:#666;padding:12px;}
 <option>Pickup & Drop</option>
 </select>
 
-<button onclick="sendWhatsApp(+917338214137)">Book on WhatsApp</button>
+<button onclick="sendWhatsApp()">Book on WhatsApp</button>
 </div>
 
+<!-- Trust Card -->
 <div class="card">
 <h2>Why FixMate?</h2>
 <ul class="trust">
@@ -88,6 +158,7 @@ footer{text-align:center;font-size:14px;color:#666;padding:12px;}
 <li>✔ Fast Response & Customer Support</li>
 </ul>
 </div>
+
 </section>
 
 <footer>
@@ -114,8 +185,8 @@ serviceableAreas.forEach(item=>{
   areaSelect.appendChild(opt);
 });
 
-// WhatsApp placeholder
-const phone="91XXXXXXXXXX"; // Replace your number
+// WhatsApp number
+const phone="917338214137"; // YOUR NUMBER
 
 function sendWhatsApp(){
   const name=document.getElementById("name").value;
@@ -130,7 +201,6 @@ function sendWhatsApp(){
     return;
   }
 
-  // Check if serviceable
   let serviceable=false;
   if(area && serviceableAreas.some(a=>a.area===area)) serviceable=true;
   if(pincode && serviceableAreas.some(a=>a.pincode===pincode)) serviceable=true;
