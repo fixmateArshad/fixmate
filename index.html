@@ -176,7 +176,7 @@ const serviceableAreas = [
   {area:"Electronics City", pincode:"560100"}
 ];
 
-// Fill dropdown
+// Fill area dropdown
 const areaSelect = document.getElementById("areaSelect");
 serviceableAreas.forEach(item=>{
   const opt=document.createElement("option");
@@ -189,14 +189,14 @@ serviceableAreas.forEach(item=>{
 const phone="917338214137"; // YOUR NUMBER
 
 function sendWhatsApp(){
-  const name=document.getElementById("name").value;
-  const area=document.getElementById("areaSelect").value;
-  const pincode=document.getElementById("pincode").value;
-  const issue=document.getElementById("issue").value;
-  const time=document.getElementById("time").value;
-  const service=document.getElementById("service").value;
+  const name=document.getElementById("name").value.trim();
+  const area=document.getElementById("areaSelect").value.trim();
+  const pincode=document.getElementById("pincode").value.trim();
+  const issue=document.getElementById("issue").value.trim();
+  const time=document.getElementById("time").value.trim();
+  const service=document.getElementById("service").value.trim();
 
-  if(!name||(!area&&!pincode)||!issue||!time||!service){
+  if(!name || (!area && !pincode) || !issue || !time || !service){
     alert("Please fill all details");
     return;
   }
@@ -210,9 +210,12 @@ function sendWhatsApp(){
     return;
   }
 
-  const selectedArea=area?area:`Pincode: ${pincode}`;
-  const message=`Hello FixMate,%0AName: ${name}%0AArea: ${selectedArea}%0ALaptop Issue: ${issue}%0AService Type: ${service}%0APreferred Time: ${time}`;
-  window.open(`https://wa.me/${phone}?text=${message}`,"_blank");
+  const selectedArea = area ? area : `Pincode: ${pincode}`;
+  const message = encodeURIComponent(
+    `Hello FixMate,\nName: ${name}\nArea: ${selectedArea}\nLaptop Issue: ${issue}\nService Type: ${service}\nPreferred Time: ${time}`
+  );
+
+  window.location.href = `https://wa.me/${phone}?text=${message}`;
 }
 </script>
 
