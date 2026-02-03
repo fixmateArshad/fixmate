@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FixMate | Laptop Repair Bangalore</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-/* Reset & body */
+/* Reset & Body */
 body {
   margin:0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,42 +18,63 @@ body {
 header {
   background: linear-gradient(90deg, #0a3cff, #0051ff);
   color: #fff;
-  padding: 30px 16px;
+  padding: 35px 16px;
   text-align: center;
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
-header h1 { margin:0; font-size:30px; font-weight:700; }
-header p { margin:5px 0 0; font-size:16px; }
+header h1 { margin:0; font-size:32px; font-weight:700; }
+header p { margin:5px 0 0; font-size:17px; }
 
-/* Sections */
-section { padding:20px; }
+/* Container */
+.container {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap:20px;
+}
 
-/* Card */
+/* Service Cards */
 .card {
   background: #fff;
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  flex:1 1 300px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.card:hover { transform: translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.15); }
+.card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+.card h2 { color:#0a3cff; margin-top:0; }
 
-/* Headings */
-h2 { margin-top:0; color:#0a3cff; }
+/* Service List with Icons */
+.card ul {
+  list-style:none;
+  padding-left:0;
+}
+.card ul li {
+  padding:10px 0;
+  border-bottom:1px solid #eee;
+  display:flex;
+  align-items:center;
+}
+.card ul li i {
+  color:#0a3cff;
+  margin-right:12px;
+  width:20px;
+}
 
-/* Inputs & Selects */
+/* Form Inputs */
 input, select, textarea {
-  width: 100%;
-  padding: 14px;
-  margin-top: 10px;
-  margin-bottom: 16px;
-  border-radius: 12px;
+  width:100%;
+  padding:14px;
+  margin-bottom:16px;
+  border-radius:12px;
   border:1px solid #ccc;
   font-size:16px;
-  box-sizing: border-box;
+  box-sizing:border-box;
 }
 
 /* Buttons */
@@ -61,7 +83,7 @@ button {
   padding:16px;
   font-size:17px;
   border:none;
-  border-radius:14px;
+  border-radius:16px;
   background: linear-gradient(90deg,#0a3cff,#0051ff);
   color:#fff;
   font-weight:600;
@@ -71,20 +93,39 @@ button {
 }
 button:hover {
   background: linear-gradient(90deg,#0051ff,#0a3cff);
-  transform: translateY(-3px);
+  transform: scale(1.03);
 }
 
 /* Trust Section */
-.trust li { margin-bottom:10px; list-style: none; padding-left: 20px; position: relative;}
-.trust li::before { content: "✔"; color: #0a3cff; position: absolute; left:0; }
+.trust li {
+  margin-bottom:10px;
+  list-style:none;
+  padding-left:25px;
+  position:relative;
+  font-weight:500;
+}
+.trust li::before {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position:absolute;
+  left:0;
+  color:#0a3cff;
+}
 
 /* Footer */
-footer { text-align:center; font-size:14px; color:#666; padding:20px; }
+footer {
+  text-align:center;
+  font-size:14px;
+  color:#666;
+  padding:20px;
+  background:#f0f0f0;
+  border-top:1px solid #ddd;
+}
 
-/* Responsive adjustments */
-@media(max-width:400px){
-  header h1{font-size:24px;}
-  input, select, textarea, button{font-size:15px;}
+/* Responsive */
+@media(max-width:800px){
+  .container{flex-direction:column;}
 }
 </style>
 </head>
@@ -95,17 +136,17 @@ footer { text-align:center; font-size:14px; color:#666; padding:20px; }
 <p>Laptop Repair at Your Doorstep – Bangalore</p>
 </header>
 
-<section>
+<div class="container">
 <!-- Services Card -->
 <div class="card">
 <h2>Our Services</h2>
 <ul>
-<li>💻 Laptop Not Powering On</li>
-<li>🖥️ No Display / Screen Issue</li>
-<li>🐢 Slow / Hanging Laptop</li>
-<li>⚡ SSD / RAM Upgrade</li>
-<li>💾 Software / OS Issues</li>
-<li>🏢 Pickup & Lab Repair</li>
+<li><i class="fas fa-laptop"></i> Laptop Not Powering On</li>
+<li><i class="fas fa-desktop"></i> No Display / Screen Issue</li>
+<li><i class="fas fa-tachometer-alt"></i> Slow / Hanging Laptop</li>
+<li><i class="fas fa-memory"></i> SSD / RAM Upgrade</li>
+<li><i class="fas fa-cogs"></i> Software / OS Issues</li>
+<li><i class="fas fa-truck"></i> Pickup & Lab Repair</li>
 </ul>
 </div>
 
@@ -155,15 +196,14 @@ footer { text-align:center; font-size:14px; color:#666; padding:20px; }
 <li>Fast Response & Customer Support</li>
 </ul>
 </div>
-
-</section>
+</div>
 
 <footer>
 © FixMate – Laptop Repair Bangalore
 </footer>
 
 <script>
-// Serviceable areas and pincodes
+// Serviceable areas
 const serviceableAreas = [
   {area:"Whitefield", pincode:"560066"},
   {area:"Marathahalli", pincode:"560037"},
@@ -183,7 +223,7 @@ serviceableAreas.forEach(item=>{
 });
 
 // WhatsApp number
-const phone="917338214137"; // YOUR NUMBER
+const phone="917338214137"; 
 
 function sendWhatsApp(){
   const name=document.getElementById("name").value.trim();
