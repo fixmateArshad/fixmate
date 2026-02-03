@@ -6,91 +6,69 @@
 <title>FixMate | Laptop Repair Bangalore</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f2f4f8;
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f2f4f8;
 }
-
-header {
-  background: linear-gradient(90deg,#0a3cff,#0051ff);
-  color: white;
-  padding: 30px 15px;
-  text-align: center;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
+header{
+  background:linear-gradient(90deg,#0a3cff,#0051ff);
+  color:white;
+  padding:30px 15px;
+  text-align:center;
+  border-bottom-left-radius:25px;
+  border-bottom-right-radius:25px;
 }
-
-.container {
-  max-width: 1100px;
-  margin: 20px auto;
-  padding: 15px;
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+.container{
+  max-width:500px;
+  margin:20px auto;
+  padding:15px;
 }
-
-.card {
-  background: white;
-  border-radius: 18px;
-  padding: 25px;
-  flex: 1 1 320px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+.card{
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
-
-.card h2 {
-  text-align: center;
-  color: #0a3cff;
+h2{
+  text-align:center;
+  color:#0a3cff;
 }
-
-input, select {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 12px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
+input,select{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:12px;
+  border:1px solid #ccc;
 }
-
-button {
-  width: 100%;
-  padding: 15px;
-  border: none;
-  border-radius: 15px;
-  background: linear-gradient(90deg,#0a3cff,#0051ff);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+button{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:15px;
+  background:linear-gradient(90deg,#0a3cff,#0051ff);
+  color:white;
+  font-weight:bold;
 }
-
-button.secondary {
-  background: #eef1ff;
-  color: #0a3cff;
+.secondary{
+  background:#eef1ff;
+  color:#0a3cff;
 }
-
-#invoice {
-  display: none;
-  max-width: 500px;
-  margin: 30px auto;
-  background: white;
-  padding: 25px;
-  border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+#invoice{
+  display:none;
+  max-width:500px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
-
-.invoice-row {
-  margin-bottom: 10px;
-  font-size: 15px;
+.row{
+  margin-bottom:8px;
+  font-size:14px;
 }
-
-.invoice-row strong {
-  color: #0a3cff;
-}
-
-footer {
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-  padding: 20px;
+.row strong{
+  color:#0a3cff;
 }
 </style>
 </head>
@@ -103,19 +81,17 @@ footer {
 </header>
 
 <div class="container" id="formSection">
-
   <div class="card">
-    <h2>Book Laptop Service</h2>
+    <h2>Book Service</h2>
 
     <input id="name" placeholder="Your Name">
-
     <input id="building" placeholder="Building / Apartment Name">
     <input id="block" placeholder="Block">
     <input id="flat" placeholder="Flat Number">
-    <input id="road" placeholder="Cross / Road Name">
-    <input id="pincode" placeholder="Pincode" type="number">
+    <input id="road" placeholder="Cross / Road">
+    <input id="pincode" placeholder="Pincode">
 
-    <input id="address" placeholder="Google Maps Link or Landmark">
+    <input id="address" placeholder="Google Maps Link / Landmark">
     <button class="secondary" onclick="getLocation()">📍 Use Current Location</button>
 
     <select id="area">
@@ -148,133 +124,87 @@ footer {
 
     <button onclick="showInvoice()">Proceed</button>
   </div>
-
 </div>
 
-<!-- INVOICE -->
 <div id="invoice">
   <h2 style="text-align:center;">Booking Invoice</h2>
 
-  <div class="invoice-row"><strong>Booking ID:</strong> <span id="bid"></span></div>
-  <div class="invoice-row"><strong>Booking Date & Time:</strong> <span id="btime"></span></div>
-  <div class="invoice-row"><strong>Service Date:</strong> <span id="sdate"></span></div>
-
+  <div class="row"><strong>ID:</strong> <span id="bid"></span></div>
+  <div class="row"><strong>Booking Time:</strong> <span id="btime"></span></div>
+  <div class="row"><strong>Service Date:</strong> <span id="sdate"></span></div>
   <hr>
+  <div class="row"><strong>Name:</strong> <span id="iName"></span></div>
+  <div class="row"><strong>Address:</strong><br><span id="iAddress"></span></div>
+  <div class="row"><strong>Issue:</strong> <span id="iIssue"></span></div>
+  <div class="row"><strong>Time Slot:</strong> <span id="iTime"></span></div>
 
-  <div class="invoice-row"><strong>Name:</strong> <span id="iName"></span></div>
-  <div class="invoice-row"><strong>Address:</strong>
-    <div id="iAddress"></div>
-  </div>
-
-  <div class="invoice-row"><strong>Area:</strong> <span id="iArea"></span></div>
-  <div class="invoice-row"><strong>Issue:</strong> <span id="iIssue"></span></div>
-  <div class="invoice-row"><strong>Time Slot:</strong> <span id="iTime"></span></div>
-
-  <button onclick="sendWhatsApp()">Confirm & Send on WhatsApp</button>
+  <button onclick="sendWhatsApp()">Confirm & Send WhatsApp</button>
 </div>
 
-<footer>© FixMate – Bangalore</footer>
-
 <script>
-let booking = {};
-
-function getLocation() {
-  navigator.geolocation.getCurrentPosition(pos => {
+function getLocation(){
+  navigator.geolocation.getCurrentPosition(pos=>{
     document.getElementById("address").value =
-      `https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
+      "https://maps.google.com/?q="+pos.coords.latitude+","+pos.coords.longitude;
   });
 }
 
-function showInvoice() {
-  const fields = ["name","building","flat","road","pincode","area","issue","time","serviceDate"];
-  for (let f of fields) {
-    if (!document.getElementById(f).value) {
+function showInvoice(){
+  const ids=["name","building","block","flat","road","pincode","area","issue","time","serviceDate"];
+  for(let i of ids){
+    if(!document.getElementById(i).value){
       alert("Please fill all details");
       return;
     }
   }
 
-  booking.id = "FM" + Date.now();
-  booking.time = new Date().toLocaleString();
-
-  const bookingData = {
-    id: booking.id,
-    bookingTime: booking.time,
-    serviceDate: serviceDate.value,
-    name: name.value,
-    building: building.value,
-    block: block.value,
-    flat: flat.value,
-    road: road.value,
-    area: area.value,
-    pincode: pincode.value,
-    issue: issue.value,
-    timeSlot: time.value,
-    map: address.value
+  const booking={
+    id:"FM"+Date.now(),
+    time:new Date().toLocaleString(),
+    serviceDate:serviceDate.value,
+    name:name.value,
+    building:building.value,
+    block:block.value,
+    flat:flat.value,
+    road:road.value,
+    pincode:pincode.value,
+    area:area.value,
+    issue:issue.value,
+    timeSlot:time.value,
+    map:address.value
   };
 
-  let allBookings = JSON.parse(localStorage.getItem("fixmateBookings")) || [];
-  allBookings.push(bookingData);
-  localStorage.setItem("fixmateBookings", JSON.stringify(allBookings));
+  let all=JSON.parse(localStorage.getItem("fixmateBookings"))||[];
+  all.push(booking);
+  localStorage.setItem("fixmateBookings",JSON.stringify(all));
 
-  document.getElementById("bid").innerText = booking.id;
-  document.getElementById("btime").innerText = booking.time;
-  document.getElementById("sdate").innerText = serviceDate.value;
-  document.getElementById("iName").innerText = name.value;
+  bid.innerText=booking.id;
+  btime.innerText=booking.time;
+  sdate.innerText=booking.serviceDate;
+  iName.innerText=booking.name;
+  iAddress.innerHTML=`${booking.building}, Block ${booking.block}, Flat ${booking.flat}<br>${booking.road}, ${booking.area} - ${booking.pincode}<br>${booking.map}`;
+  iIssue.innerText=booking.issue;
+  iTime.innerText=booking.timeSlot;
 
-  document.getElementById("iAddress").innerHTML =
-    `${building.value}, Block ${block.value}, Flat ${flat.value}<br>
-     ${road.value}, ${area.value} – ${pincode.value}<br>
-     ${address.value}`;
-
-  document.getElementById("iArea").innerText = area.value;
-  document.getElementById("iIssue").innerText = issue.value;
-  document.getElementById("iTime").innerText = time.value;
-
-  formSection.style.display = "none";
-  invoice.style.display = "block";
-}
-    }
-  }
-
-  booking.id = "FM" + Date.now();
-  booking.time = new Date().toLocaleString();
-
-  document.getElementById("bid").innerText = booking.id;
-  document.getElementById("btime").innerText = booking.time;
-  document.getElementById("sdate").innerText = serviceDate.value;
-  document.getElementById("iName").innerText = name.value;
-
-  document.getElementById("iAddress").innerHTML =
-    `${building.value}, Block ${block.value}, Flat ${flat.value}<br>
-     ${road.value}, ${area.value} – ${pincode.value}<br>
-     ${address.value}`;
-
-  document.getElementById("iArea").innerText = area.value;
-  document.getElementById("iIssue").innerText = issue.value;
-  document.getElementById("iTime").innerText = time.value;
-
-  formSection.style.display = "none";
-  invoice.style.display = "block";
+  formSection.style.display="none";
+  invoice.style.display="block";
 }
 
-function sendWhatsApp() {
-  const phone = "917338214137";
-  const text = encodeURIComponent(
-`FixMate Booking Confirmed
-Booking ID: ${booking.id}
-Booking Time: ${booking.time}
-Service Date: ${serviceDate.value}
+function sendWhatsApp(){
+  const phone="917338214137";
+  const msg=encodeURIComponent(
+`FixMate Booking
+ID: ${bid.innerText}
+Date: ${sdate.innerText}
 
-Name: ${name.value}
+Name: ${iName.innerText}
+Issue: ${iIssue.innerText}
+Time: ${iTime.innerText}
+
 Address:
-${building.value}, Block ${block.value}, Flat ${flat.value}
-${road.value}, ${area.value} - ${pincode.value}
-
-Issue: ${issue.value}
-Time Slot: ${time.value}`
+${iAddress.innerText}`
   );
-  window.location.href = `https://wa.me/${phone}?text=${text}`;
+  window.location.href=`https://wa.me/${phone}?text=${msg}`;
 }
 </script>
 
