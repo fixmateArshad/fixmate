@@ -197,6 +197,49 @@ function showInvoice() {
   booking.id = "FM" + Date.now();
   booking.time = new Date().toLocaleString();
 
+  const bookingData = {
+    id: booking.id,
+    bookingTime: booking.time,
+    serviceDate: serviceDate.value,
+    name: name.value,
+    building: building.value,
+    block: block.value,
+    flat: flat.value,
+    road: road.value,
+    area: area.value,
+    pincode: pincode.value,
+    issue: issue.value,
+    timeSlot: time.value,
+    map: address.value
+  };
+
+  let allBookings = JSON.parse(localStorage.getItem("fixmateBookings")) || [];
+  allBookings.push(bookingData);
+  localStorage.setItem("fixmateBookings", JSON.stringify(allBookings));
+
+  document.getElementById("bid").innerText = booking.id;
+  document.getElementById("btime").innerText = booking.time;
+  document.getElementById("sdate").innerText = serviceDate.value;
+  document.getElementById("iName").innerText = name.value;
+
+  document.getElementById("iAddress").innerHTML =
+    `${building.value}, Block ${block.value}, Flat ${flat.value}<br>
+     ${road.value}, ${area.value} – ${pincode.value}<br>
+     ${address.value}`;
+
+  document.getElementById("iArea").innerText = area.value;
+  document.getElementById("iIssue").innerText = issue.value;
+  document.getElementById("iTime").innerText = time.value;
+
+  formSection.style.display = "none";
+  invoice.style.display = "block";
+}
+    }
+  }
+
+  booking.id = "FM" + Date.now();
+  booking.time = new Date().toLocaleString();
+
   document.getElementById("bid").innerText = booking.id;
   document.getElementById("btime").innerText = booking.time;
   document.getElementById("sdate").innerText = serviceDate.value;
