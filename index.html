@@ -4,18 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FixMate | Laptop Repair Bangalore</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f2f4f8;
-  color: #222;
 }
 
 header {
-  background: linear-gradient(90deg, #0a3cff, #0051ff);
+  background: linear-gradient(90deg,#0a3cff,#0051ff);
   color: white;
   padding: 30px 15px;
   text-align: center;
@@ -41,27 +39,24 @@ header {
 }
 
 .card h2 {
-  color: #0a3cff;
   text-align: center;
-  margin-top: 0;
+  color: #0a3cff;
 }
 
 input, select {
   width: 100%;
   padding: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   border-radius: 12px;
   border: 1px solid #ccc;
-  font-size: 15px;
 }
 
 button {
   width: 100%;
   padding: 15px;
-  font-size: 16px;
   border: none;
   border-radius: 15px;
-  background: linear-gradient(90deg, #0a3cff, #0051ff);
+  background: linear-gradient(90deg,#0a3cff,#0051ff);
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -70,34 +65,8 @@ button {
 button.secondary {
   background: #eef1ff;
   color: #0a3cff;
-  margin-bottom: 12px;
 }
 
-.trust li {
-  list-style: none;
-  margin-bottom: 12px;
-  padding-left: 35px;
-  position: relative;
-}
-
-.trust li::before {
-  content: "\f00c";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  position: absolute;
-  left: 0;
-  top: 2px;
-  color: #0a3cff;
-}
-
-footer {
-  text-align: center;
-  font-size: 14px;
-  color: #666;
-  padding: 20px;
-}
-
-/* Invoice */
 #invoice {
   display: none;
   max-width: 500px;
@@ -116,6 +85,13 @@ footer {
 .invoice-row strong {
   color: #0a3cff;
 }
+
+footer {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  padding: 20px;
+}
 </style>
 </head>
 
@@ -132,18 +108,23 @@ footer {
     <h2>Book Laptop Service</h2>
 
     <input id="name" placeholder="Your Name">
-    <input id="address" placeholder="Full Address or Google Maps link">
 
-    <button class="secondary" onclick="getLocation()">📍 Use My Current Location</button>
+    <input id="building" placeholder="Building / Apartment Name">
+    <input id="block" placeholder="Block">
+    <input id="flat" placeholder="Flat Number">
+    <input id="road" placeholder="Cross / Road Name">
+    <input id="pincode" placeholder="Pincode" type="number">
+
+    <input id="address" placeholder="Google Maps Link or Landmark">
+    <button class="secondary" onclick="getLocation()">📍 Use Current Location</button>
 
     <select id="area">
       <option value="">Select Area</option>
       <option>Whitefield</option>
       <option>Marathahalli</option>
-      <option>Sarjapur</option>
       <option>Koramangala</option>
       <option>HSR Layout</option>
-      <option>Electronics City</option>
+      <option>Electronic City</option>
     </select>
 
     <select id="issue">
@@ -152,9 +133,10 @@ footer {
       <option>No Display</option>
       <option>Slow / Hanging</option>
       <option>SSD / RAM Upgrade</option>
-      <option>Software Issue</option>
       <option>Pickup & Lab Repair</option>
     </select>
+
+    <input type="date" id="serviceDate">
 
     <select id="time">
       <option value="">Preferred Time</option>
@@ -167,36 +149,34 @@ footer {
     <button onclick="showInvoice()">Proceed</button>
   </div>
 
-  <div class="card">
-    <h2>Why Choose FixMate?</h2>
-    <ul class="trust">
-      <li>Invoice Provided</li>
-      <li>Secure Pickup & Drop</li>
-      <li>Experienced Technician</li>
-      <li>Bangalore Based Service</li>
-    </ul>
-  </div>
-
 </div>
 
 <!-- INVOICE -->
 <div id="invoice">
-  <h2 style="text-align:center;">Booking Summary</h2>
+  <h2 style="text-align:center;">Booking Invoice</h2>
+
   <div class="invoice-row"><strong>Booking ID:</strong> <span id="bid"></span></div>
+  <div class="invoice-row"><strong>Booking Date & Time:</strong> <span id="btime"></span></div>
+  <div class="invoice-row"><strong>Service Date:</strong> <span id="sdate"></span></div>
+
+  <hr>
+
   <div class="invoice-row"><strong>Name:</strong> <span id="iName"></span></div>
-  <div class="invoice-row"><strong>Address:</strong> <span id="iAddress"></span></div>
+  <div class="invoice-row"><strong>Address:</strong>
+    <div id="iAddress"></div>
+  </div>
+
   <div class="invoice-row"><strong>Area:</strong> <span id="iArea"></span></div>
   <div class="invoice-row"><strong>Issue:</strong> <span id="iIssue"></span></div>
   <div class="invoice-row"><strong>Time Slot:</strong> <span id="iTime"></span></div>
-  <div class="invoice-row"><strong>Date:</strong> <span id="iDate"></span></div>
 
   <button onclick="sendWhatsApp()">Confirm & Send on WhatsApp</button>
 </div>
 
-<footer>© FixMate – Laptop Repair Bangalore</footer>
+<footer>© FixMate – Bangalore</footer>
 
 <script>
-let bookingData = {};
+let booking = {};
 
 function getLocation() {
   navigator.geolocation.getCurrentPosition(pos => {
@@ -206,41 +186,52 @@ function getLocation() {
 }
 
 function showInvoice() {
-  const name = document.getElementById("name").value.trim();
-  const address = document.getElementById("address").value.trim();
-  const area = document.getElementById("area").value;
-  const issue = document.getElementById("issue").value;
-  const time = document.getElementById("time").value;
-
-  if (!name || !address || !area || !issue || !time) {
-    alert("Please fill all details");
-    return;
+  const fields = ["name","building","flat","road","pincode","area","issue","time","serviceDate"];
+  for (let f of fields) {
+    if (!document.getElementById(f).value) {
+      alert("Please fill all details");
+      return;
+    }
   }
 
-  bookingData = {
-    id: "FM" + Date.now(),
-    name, address, area, issue, time,
-    date: new Date().toLocaleString()
-  };
+  booking.id = "FM" + Date.now();
+  booking.time = new Date().toLocaleString();
 
-  document.getElementById("bid").innerText = bookingData.id;
-  document.getElementById("iName").innerText = name;
-  document.getElementById("iAddress").innerText = address;
-  document.getElementById("iArea").innerText = area;
-  document.getElementById("iIssue").innerText = issue;
-  document.getElementById("iTime").innerText = time;
-  document.getElementById("iDate").innerText = bookingData.date;
+  document.getElementById("bid").innerText = booking.id;
+  document.getElementById("btime").innerText = booking.time;
+  document.getElementById("sdate").innerText = serviceDate.value;
+  document.getElementById("iName").innerText = name.value;
 
-  document.getElementById("formSection").style.display = "none";
-  document.getElementById("invoice").style.display = "block";
+  document.getElementById("iAddress").innerHTML =
+    `${building.value}, Block ${block.value}, Flat ${flat.value}<br>
+     ${road.value}, ${area.value} – ${pincode.value}<br>
+     ${address.value}`;
+
+  document.getElementById("iArea").innerText = area.value;
+  document.getElementById("iIssue").innerText = issue.value;
+  document.getElementById("iTime").innerText = time.value;
+
+  formSection.style.display = "none";
+  invoice.style.display = "block";
 }
 
 function sendWhatsApp() {
   const phone = "917338214137";
-  const msg = encodeURIComponent(
-    `FixMate Booking Confirmed\n\nBooking ID: ${bookingData.id}\nName: ${bookingData.name}\nAddress: ${bookingData.address}\nArea: ${bookingData.area}\nIssue: ${bookingData.issue}\nTime: ${bookingData.time}\nDate: ${bookingData.date}`
+  const text = encodeURIComponent(
+`FixMate Booking Confirmed
+Booking ID: ${booking.id}
+Booking Time: ${booking.time}
+Service Date: ${serviceDate.value}
+
+Name: ${name.value}
+Address:
+${building.value}, Block ${block.value}, Flat ${flat.value}
+${road.value}, ${area.value} - ${pincode.value}
+
+Issue: ${issue.value}
+Time Slot: ${time.value}`
   );
-  window.location.href = `https://wa.me/${phone}?text=${msg}`;
+  window.location.href = `https://wa.me/${phone}?text=${text}`;
 }
 </script>
 
