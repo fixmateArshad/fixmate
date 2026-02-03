@@ -23,15 +23,8 @@ header {
   border-bottom-right-radius: 25px;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 32px;
-}
-
-header p {
-  margin-top: 8px;
-  font-size: 16px;
-}
+header h1 { margin: 0; font-size: 32px; }
+header p { margin-top: 8px; font-size: 16px; }
 
 .container {
   max-width: 1100px;
@@ -89,8 +82,10 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  opacity: 0.9;
+button.secondary {
+  background: #eef1ff;
+  color: #0a3cff;
+  margin-bottom: 12px;
 }
 
 .trust li {
@@ -119,9 +114,7 @@ footer {
 }
 
 @media(max-width:900px){
-  .container {
-    flex-direction: column;
-  }
+  .container { flex-direction: column; }
 }
 </style>
 </head>
@@ -151,7 +144,11 @@ footer {
     <h2>Book Laptop Service</h2>
 
     <input id="name" placeholder="Your Name">
-    <input id="address" placeholder="Full Address with Landmark">
+    <input id="address" placeholder="Full Address or Location Link">
+
+    <button class="secondary" onclick="getLocation()">
+      📍 Use My Current Location
+    </button>
 
     <select id="area">
       <option value="">Select Your Area</option>
@@ -201,6 +198,23 @@ footer {
 <footer>© FixMate – Laptop Repair Bangalore</footer>
 
 <script>
+function getLocation() {
+  if (!navigator.geolocation) {
+    alert("Geolocation not supported");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      document.getElementById("address").value =
+        `https://maps.google.com/?q=${lat},${lng}`;
+    },
+    () => alert("Please allow location access")
+  );
+}
+
 function book() {
   const name = document.getElementById("name").value.trim();
   const address = document.getElementById("address").value.trim();
@@ -215,7 +229,7 @@ function book() {
 
   const phone = "917338214137";
   const msg = encodeURIComponent(
-    `Hello FixMate,\n\nName: ${name}\nAddress: ${address}\nArea: ${area}\nIssue: ${issue}\nPreferred Time: ${time}`
+    `Hello FixMate,\n\nName: ${name}\nAddress / Location: ${address}\nArea: ${area}\nIssue: ${issue}\nPreferred Time: ${time}`
   );
 
   window.location.href = `https://wa.me/${phone}?text=${msg}`;
