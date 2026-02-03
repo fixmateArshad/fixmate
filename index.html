@@ -9,7 +9,7 @@
 body {
   margin:0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f2f4f8;
+  background: #eef2f7;
   color: #222;
 }
 
@@ -17,13 +17,13 @@ body {
 header {
   background: linear-gradient(90deg, #0a3cff, #0051ff);
   color: #fff;
-  padding: 25px 16px;
+  padding: 30px 16px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
-header h1 { margin:0; font-size:28px; font-weight:700; }
+header h1 { margin:0; font-size:30px; font-weight:700; }
 header p { margin:5px 0 0; font-size:16px; }
 
 /* Sections */
@@ -35,23 +35,24 @@ section { padding:20px; }
   border-radius: 16px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  transition: transform 0.2s;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
-.card:hover { transform: translateY(-4px); }
+.card:hover { transform: translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.15); }
 
 /* Headings */
 h2 { margin-top:0; color:#0a3cff; }
 
 /* Inputs & Selects */
-input, select {
+input, select, textarea {
   width: 100%;
   padding: 14px;
   margin-top: 10px;
   margin-bottom: 16px;
-  border-radius: 10px;
+  border-radius: 12px;
   border:1px solid #ccc;
   font-size:16px;
+  box-sizing: border-box;
 }
 
 /* Buttons */
@@ -60,29 +61,30 @@ button {
   padding:16px;
   font-size:17px;
   border:none;
-  border-radius:12px;
+  border-radius:14px;
   background: linear-gradient(90deg,#0a3cff,#0051ff);
   color:#fff;
   font-weight:600;
   cursor:pointer;
   transition:0.3s;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 button:hover {
   background: linear-gradient(90deg,#0051ff,#0a3cff);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 /* Trust Section */
-.trust li { margin-bottom:10px; }
+.trust li { margin-bottom:10px; list-style: none; padding-left: 20px; position: relative;}
+.trust li::before { content: "✔"; color: #0a3cff; position: absolute; left:0; }
 
 /* Footer */
-footer { text-align:center; font-size:14px; color:#666; padding:15px; }
+footer { text-align:center; font-size:14px; color:#666; padding:20px; }
 
 /* Responsive adjustments */
 @media(max-width:400px){
   header h1{font-size:24px;}
-  input, select, button{font-size:15px;}
+  input, select, textarea, button{font-size:15px;}
 }
 </style>
 </head>
@@ -96,14 +98,14 @@ footer { text-align:center; font-size:14px; color:#666; padding:15px; }
 <section>
 <!-- Services Card -->
 <div class="card">
-<h2>Laptop Services</h2>
+<h2>Our Services</h2>
 <ul>
-<li>Laptop Not Powering On</li>
-<li>No Display / Screen Issue</li>
-<li>Slow / Hanging Laptop</li>
-<li>SSD / RAM Upgrade</li>
-<li>Software / OS Issues</li>
-<li>Pickup & Lab Repair</li>
+<li>💻 Laptop Not Powering On</li>
+<li>🖥️ No Display / Screen Issue</li>
+<li>🐢 Slow / Hanging Laptop</li>
+<li>⚡ SSD / RAM Upgrade</li>
+<li>💾 Software / OS Issues</li>
+<li>🏢 Pickup & Lab Repair</li>
 </ul>
 </div>
 
@@ -111,13 +113,11 @@ footer { text-align:center; font-size:14px; color:#666; padding:15px; }
 <div class="card">
 <h2>Book Laptop Service</h2>
 <input id="name" placeholder="Your Name">
-
+<input id="address" placeholder="Full Address (House, Street, Landmark)">
 <select id="areaSelect">
 <option value="">Select Your Area</option>
 </select>
-
 <input id="pincode" placeholder="Or enter your Pincode" type="number">
-
 <select id="issue">
 <option value="">Select Laptop Issue</option>
 <option>Not Powering On</option>
@@ -128,7 +128,6 @@ footer { text-align:center; font-size:14px; color:#666; padding:15px; }
 <option>Pickup & Lab Repair</option>
 <option>Other / Not Listed</option>
 </select>
-
 <select id="time">
 <option value="">Preferred Time Slot</option>
 <option>10 AM – 12 PM</option>
@@ -136,26 +135,24 @@ footer { text-align:center; font-size:14px; color:#666; padding:15px; }
 <option>2 PM – 4 PM</option>
 <option>4 PM – 6 PM</option>
 </select>
-
 <select id="service">
 <option value="">Service Type</option>
 <option>Home Service</option>
 <option>Pickup & Drop</option>
 </select>
-
 <button onclick="sendWhatsApp()">Book on WhatsApp</button>
 </div>
 
 <!-- Trust Card -->
 <div class="card">
-<h2>Why FixMate?</h2>
+<h2>Why Choose FixMate?</h2>
 <ul class="trust">
-<li>✔ Experienced Laptop Technician</li>
-<li>✔ Genuine Parts Used</li>
-<li>✔ Invoice Provided</li>
-<li>✔ Laptop Serial Number Recorded</li>
-<li>✔ Secure Pickup & Drop</li>
-<li>✔ Fast Response & Customer Support</li>
+<li>Experienced Laptop Technician</li>
+<li>Genuine Parts Used</li>
+<li>Invoice Provided</li>
+<li>Laptop Serial Number Recorded</li>
+<li>Secure Pickup & Drop</li>
+<li>Fast Response & Customer Support</li>
 </ul>
 </div>
 
@@ -190,13 +187,14 @@ const phone="917338214137"; // YOUR NUMBER
 
 function sendWhatsApp(){
   const name=document.getElementById("name").value.trim();
+  const address=document.getElementById("address").value.trim();
   const area=document.getElementById("areaSelect").value.trim();
   const pincode=document.getElementById("pincode").value.trim();
   const issue=document.getElementById("issue").value.trim();
   const time=document.getElementById("time").value.trim();
   const service=document.getElementById("service").value.trim();
 
-  if(!name || (!area && !pincode) || !issue || !time || !service){
+  if(!name || !address || (!area && !pincode) || !issue || !time || !service){
     alert("Please fill all details");
     return;
   }
@@ -212,7 +210,7 @@ function sendWhatsApp(){
 
   const selectedArea = area ? area : `Pincode: ${pincode}`;
   const message = encodeURIComponent(
-    `Hello FixMate,\nName: ${name}\nArea: ${selectedArea}\nLaptop Issue: ${issue}\nService Type: ${service}\nPreferred Time: ${time}`
+    `Hello FixMate,\nName: ${name}\nAddress: ${address}\nArea: ${selectedArea}\nLaptop Issue: ${issue}\nService Type: ${service}\nPreferred Time: ${time}`
   );
 
   window.location.href = `https://wa.me/${phone}?text=${message}`;
