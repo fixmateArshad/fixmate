@@ -3,280 +3,234 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FixMate | Laptop Repair Bangalore</title>
+<title>FixMate – Laptop Repair Bangalore</title>
 
-<!-- ===== POLISHED STYLE ===== -->
 <style>
 body{
   margin:0;
-  font-family: 'Segoe UI', system-ui, -apple-system;
-  background:#f5f5f5;
-  color:#333333;
+  font-family:system-ui, Arial, sans-serif;
+  background:#f6f7f5;
+  color:#222;
 }
-
+.container{
+  max-width:480px;
+  margin:auto;
+  padding:16px;
+}
 header{
-  background:linear-gradient(135deg,#ff7e5f,#feb47b); /* warm gradient */
-  color:white;
-  padding:40px 20px;
   text-align:center;
-  border-bottom-left-radius:32px;
-  border-bottom-right-radius:32px;
+  margin-bottom:18px;
 }
-
 header h1{
   margin:0;
-  font-size:32px;
-  letter-spacing:0.5px;
+  color:#344e41;
 }
-
 header p{
-  margin-top:10px;
-  font-size:15px;
-  opacity:0.9;
-}
-
-.container{
-  max-width:520px;
-  margin:25px auto;
-  padding:15px;
-  box-sizing:border-box;
+  font-size:14px;
+  color:#555;
 }
 
 .card{
-  background:white;
-  padding:22px;
-  border-radius:22px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-  overflow:hidden; /* prevents blocks going outside */
-}
-
-h2{
-  text-align:center;
-  color:#ff7e5f;
-  margin-bottom:20px;
-}
-
-input,select{
-  width:100%;
-  padding:15px;
-  margin-bottom:14px;
+  background:#fff;
   border-radius:14px;
-  border:1px solid #ddd;
-  font-size:15px;
-  background:#fafafa;
-  box-sizing:border-box;
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+.card h3{
+  margin-top:0;
+  color:#3a5a40;
 }
 
-input:focus,select:focus{
-  outline:none;
-  border-color:#ff7e5f;
-  background:white;
+input, select, textarea{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  margin-bottom:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:14px;
 }
 
 button{
   width:100%;
-  padding:16px;
+  padding:12px;
   border:none;
-  border-radius:16px;
-  background:linear-gradient(135deg,#ff7e5f,#feb47b);
+  border-radius:10px;
+  background:#3a5a40;
   color:white;
   font-size:16px;
-  font-weight:600;
   cursor:pointer;
-  box-shadow:0 8px 20px rgba(255,126,95,0.3);
+}
+button:hover{
+  background:#2d4732;
 }
 
-button.secondary{
-  background:#fff4f1;
-  color:#ff7e5f;
-  box-shadow:none;
-  margin-bottom:10px;
-}
-
-#invoice{
-  display:none;
-  max-width:520px;
-  margin:25px auto;
-  background:white;
-  padding:22px;
-  border-radius:22px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.12);
-  overflow:hidden;
-}
-
-.row{
-  margin-bottom:10px;
-  font-size:14.5px;
-  line-height:1.5;
-}
-
-.row strong{
-  color:#ff7e5f;
-}
-
-hr{
-  border:none;
-  border-top:1px dashed #ddd;
-  margin:15px 0;
-}
-
-footer{
-  text-align:center;
+.small{
   font-size:13px;
   color:#666;
-  padding:20px;
+}
+
+.trust li{
+  list-style:none;
+  padding-left:22px;
+  margin-bottom:6px;
+  position:relative;
+}
+.trust li::before{
+  content:"✔";
+  position:absolute;
+  left:0;
+  color:#3a5a40;
+  font-weight:bold;
 }
 </style>
 </head>
 
 <body>
+<div class="container">
 
 <header>
   <h1>FixMate</h1>
   <p>Laptop Repair at Your Doorstep – Bangalore</p>
 </header>
 
-<div class="container" id="formSection">
-  <div class="card">
-    <h2>Book Service</h2>
-
-    <input id="name" placeholder="Your Name">
-    <input id="building" placeholder="Building / Apartment Name">
-    <input id="block" placeholder="Block">
-    <input id="flat" placeholder="Flat Number">
-    <input id="road" placeholder="Cross / Road">
-    <input id="pincode" placeholder="Pincode">
-
-    <input id="address" placeholder="Google Maps Link / Landmark">
-    <button class="secondary" onclick="getLocation()">📍 Use Current Location</button>
-
-    <select id="area">
-      <option value="">Select Area</option>
-      <option>Whitefield</option>
-      <option>Marathahalli</option>
-      <option>Koramangala</option>
-      <option>HSR Layout</option>
-      <option>Electronic City</option>
-    </select>
-
-    <select id="issue">
-      <option value="">Select Issue</option>
-      <option>Not Powering On</option>
-      <option>No Display</option>
-      <option>Slow / Hanging</option>
-      <option>SSD / RAM Upgrade</option>
-      <option>Pickup & Lab Repair</option>
-      <option>Other</option>
-    </select>
-
-    <input type="date" id="serviceDate">
-
-    <select id="time">
-      <option value="">Preferred Time</option>
-      <option>10 AM – 12 PM</option>
-      <option>12 PM – 2 PM</option>
-      <option>2 PM – 4 PM</option>
-      <option>4 PM – 6 PM</option>
-    </select>
-
-    <button onclick="showInvoice()">Proceed</button>
-  </div>
+<!-- CUSTOMER DETAILS -->
+<div class="card">
+  <h3>Your Details</h3>
+  <input id="name" placeholder="Your Name">
+  <input id="phone" placeholder="Mobile Number" value="7338214137">
 </div>
 
-<div id="invoice">
-  <h2 style="text-align:center;">Booking Invoice</h2>
+<!-- PROBLEM SECTION -->
+<div class="card">
+  <h3>Select Problem</h3>
+  <select id="issue">
+    <option value="">-- Select Laptop Issue --</option>
+    <option>No Power / Dead Laptop</option>
+    <option>Screen Issue / No Display</option>
+    <option>Laptop Slow / Hanging</option>
+    <option>Battery / Charging Issue</option>
+    <option>Keyboard / Touchpad Issue</option>
+    <option>OS / Software Problem</option>
+    <option>Others</option>
+  </select>
+</div>
 
-  <div class="row"><strong>ID:</strong> <span id="bid"></span></div>
-  <div class="row"><strong>Booking Time:</strong> <span id="btime"></span></div>
-  <div class="row"><strong>Service Date:</strong> <span id="sdate"></span></div>
-  <hr>
-  <div class="row"><strong>Name:</strong> <span id="iName"></span></div>
-  <div class="row"><strong>Address:</strong><br><span id="iAddress"></span></div>
-  <div class="row"><strong>Issue:</strong> <span id="iIssue"></span></div>
-  <div class="row"><strong>Time Slot:</strong> <span id="iTime"></span></div>
+<!-- LOCATION -->
+<div class="card">
+  <h3>Service Location</h3>
+  <button onclick="getLocation()">📍 Detect My Location</button>
+  <input id="area" placeholder="Area" readonly>
+  <input id="pincode" placeholder="Pincode" readonly>
+</div>
 
-  <button onclick="sendWhatsApp()">Confirm & Send WhatsApp</button>
+<!-- ADDRESS -->
+<div class="card">
+  <h3>Full Address</h3>
+  <input id="building" placeholder="Building / Apartment Name">
+  <input id="flat" placeholder="Block / Flat Number">
+  <input id="street" placeholder="Street / Cross / Road">
+</div>
+
+<!-- DATE & TIME -->
+<div class="card">
+  <h3>Preferred Schedule</h3>
+  <label class="small">Service Date</label>
+  <input type="date" id="date">
+  <label class="small">Time Slot</label>
+  <select id="time">
+    <option>10 AM – 12 PM</option>
+    <option>12 PM – 2 PM</option>
+    <option>2 PM – 4 PM</option>
+    <option>4 PM – 6 PM</option>
+  </select>
+</div>
+
+<!-- BOOK -->
+<div class="card">
+  <button onclick="sendWhatsApp()">📲 Book via WhatsApp</button>
+</div>
+
+<!-- TRUST -->
+<div class="card">
+  <h3>Why Choose FixMate</h3>
+  <ul class="trust">
+    <li>Doorstep Service</li>
+    <li>Transparent Pricing</li>
+    <li>Invoice for Pickup</li>
+    <li>Bangalore Local Technician</li>
+  </ul>
+</div>
+
 </div>
 
 <script>
-// ===== Set default date to tomorrow =====
-window.onload = function(){
-  const today = new Date();
-  today.setDate(today.getDate()+1);
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth()+1).padStart(2,'0');
-  const dd = String(today.getDate()).padStart(2,'0');
-  const tomorrow = `${yyyy}-${mm}-${dd}`;
-  document.getElementById('serviceDate').value = tomorrow;
-  document.getElementById('serviceDate').min = tomorrow;
-};
+/* NEXT DAY DATE DEFAULT */
+const dateInput = document.getElementById("date");
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+dateInput.value = tomorrow.toISOString().split("T")[0];
 
-// ===== Get current location =====
+/* ALLOWED PINCODES */
+const allowedPincodes = [
+  "560066","560067","560087","560037","560035",
+  "560103","560102","560034","560095",
+  "560100","560099","560048",
+  "560026"
+];
+
+/* LOCATION DETECTION */
 function getLocation(){
-  navigator.geolocation.getCurrentPosition(pos=>{
-    document.getElementById("address").value =
-      "https://maps.google.com/?q="+pos.coords.latitude+","+pos.coords.longitude;
-  });
-}
+  navigator.geolocation.getCurrentPosition(async pos=>{
+    const lat = pos.coords.latitude;
+    const lon = pos.coords.longitude;
 
-// ===== Show invoice & save booking =====
-function showInvoice(){
-  const ids=["name","building","block","flat","road","pincode","area","issue","time","serviceDate"];
-  for(let i of ids){
-    if(!document.getElementById(i).value){
-      alert("Please fill all details");
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+    );
+    const data = await res.json();
+    const pincode = data.address.postcode || "";
+    const area =
+      data.address.suburb ||
+      data.address.neighbourhood ||
+      data.address.city_district ||
+      "";
+
+    if(!allowedPincodes.includes(pincode)){
+      alert("❌ Service not available in your area yet");
       return;
     }
-  }
 
-  const booking={
-    id:"FM"+Date.now(),
-    time:new Date().toLocaleString(),
-    serviceDate:serviceDate.value,
-    name:name.value,
-    building:building.value,
-    block:block.value,
-    flat:flat.value,
-    road:road.value,
-    pincode:pincode.value,
-    area:area.value,
-    issue:issue.value,
-    timeSlot:time.value,
-    map:address.value
-  };
+    document.getElementById("pincode").value = pincode;
+    document.getElementById("area").value = area;
 
-  let all=JSON.parse(localStorage.getItem("fixmateBookings"))||[];
-  all.push(booking);
-  localStorage.setItem("fixmateBookings",JSON.stringify(all));
-
-  bid.innerText=booking.id;
-  btime.innerText=booking.time;
-  sdate.innerText=booking.serviceDate;
-  iName.innerText=booking.name;
-  iAddress.innerHTML=`${booking.building}, Block ${booking.block}, Flat ${booking.flat}<br>${booking.road}, ${booking.area} - ${booking.pincode}<br>${booking.map}`;
-  iIssue.innerText=booking.issue;
-  iTime.innerText=booking.timeSlot;
-
-  formSection.style.display="none";
-  invoice.style.display="block";
+    alert("✅ Service available in your location");
+  },
+  ()=>alert("Unable to detect location"));
 }
 
-// ===== WhatsApp send =====
+/* WHATSAPP */
 function sendWhatsApp(){
-  const phone="917338214137"; // your number
-  const msg=encodeURIComponent(
-`FixMate Booking
-ID: ${bid.innerText}
-Date: ${sdate.innerText}
+  const msg =
+`FixMate Laptop Service Booking
 
-Name: ${iName.innerText}
-Issue: ${iIssue.innerText}
-Time: ${iTime.innerText}
+Name: ${name.value}
+Phone: ${phone.value}
+
+Issue: ${issue.value}
 
 Address:
-${iAddress.innerText}`
+${building.value}, ${flat.value}
+${street.value}
+${area.value} - ${pincode.value}
+
+Date: ${date.value}
+Time: ${time.value}`;
+
+  window.open(
+    `https://wa.me/917338214137?text=${encodeURIComponent(msg)}`
   );
-  window.location.href=`https://wa.me/${phone}?text=${msg}`;
 }
 </script>
 
