@@ -7,37 +7,59 @@
 
 <style>
 *{box-sizing:border-box;}
+
 body{
   margin:0;
-  font-family:system-ui,Arial;
-  background:#f3f4f2;
+  font-family:system-ui,Arial,sans-serif;
+  background:#f2f3f1;
+  color:#222;
 }
+
 .container{
   max-width:480px;
   margin:auto;
   padding:16px;
 }
-header{text-align:center;margin-bottom:16px;}
-header h1{margin:0;color:#344e41;}
-header p{font-size:14px;color:#555;}
+
+header{
+  text-align:center;
+  margin-bottom:18px;
+}
+header h1{
+  margin:0;
+  color:#344e41;
+  letter-spacing:.3px;
+}
+header p{
+  font-size:14px;
+  color:#555;
+}
 
 .card{
-  background:#fff;
+  background:#ffffff;
   border-radius:16px;
   padding:16px;
   margin-bottom:16px;
-  box-shadow:0 10px 24px rgba(0,0,0,.08);
+  box-shadow:0 10px 26px rgba(0,0,0,.08);
 }
-.card h3{margin:0 0 12px;color:#3a5a40;}
+
+.card h3{
+  margin:0 0 12px;
+  color:#3a5a40;
+  font-size:16px;
+}
 
 input,select,textarea{
   width:100%;
   padding:12px;
   margin-bottom:12px;
   border-radius:10px;
-  border:1px solid #ccc;
+  border:1px solid #d1d5db;
   background:#fafafa;
+  font-size:14px;
 }
+
+textarea{resize:none;height:80px;}
 
 button{
   width:100%;
@@ -46,7 +68,14 @@ button{
   border-radius:12px;
   background:#3a5a40;
   color:#fff;
-  font-size:16px;
+  font-size:15px;
+  font-weight:500;
+  cursor:pointer;
+}
+
+button:disabled{
+  background:#9fb3a4;
+  cursor:not-allowed;
 }
 
 .toggle{
@@ -55,7 +84,7 @@ button{
 }
 .toggle button{
   flex:1;
-  background:#dde5dd;
+  background:#e6ebe6;
   color:#222;
 }
 .toggle button.active{
@@ -69,9 +98,32 @@ button{
   border-radius:10px;
   font-size:14px;
   color:#2d4732;
+  display:none;
 }
 
 .small{font-size:13px;color:#666;}
+
+.loader{
+  display:none;
+  text-align:center;
+  font-size:13px;
+  color:#3a5a40;
+  margin-top:8px;
+}
+.loader span{
+  display:inline-block;
+  width:18px;
+  height:18px;
+  border:3px solid #cbd5cb;
+  border-top:3px solid #3a5a40;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  vertical-align:middle;
+  margin-right:6px;
+}
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
 </style>
 </head>
 
@@ -92,7 +144,7 @@ button{
 <div class="card">
   <h3>Select Problem</h3>
   <select id="issue" onchange="updatePrice()">
-    <option value="">-- Select Issue --</option>
+    <option value="">-- Select Laptop Issue --</option>
     <option value="299">No Power / Dead Laptop</option>
     <option value="399">Screen Issue / No Display</option>
     <option value="199">Laptop Slow / Hanging</option>
@@ -102,7 +154,7 @@ button{
     <option value="199">Others</option>
   </select>
 
-  <div class="priceBox" id="priceBox" style="display:none;">
+  <div class="priceBox" id="priceBox">
     Estimated Inspection Charge: ₹<span id="price"></span><br>
     <span class="small">Final repair cost after inspection</span>
   </div>
@@ -118,7 +170,10 @@ button{
 
 <div class="card">
   <h3>Service Location</h3>
-  <button onclick="getLocation()">📍 Detect My Location</button>
+  <button id="locBtn" onclick="getLocation()">📍 Detect My Location</button>
+  <div class="loader" id="loader">
+    <span></span>Detecting location…
+  </div>
   <input id="area" placeholder="Area" readonly>
   <input id="pincode" placeholder="Pincode" readonly>
 </div>
@@ -159,7 +214,7 @@ function updatePrice(){
   if(issue.value){
     price=issue.value;
     priceBox.style.display="block";
-    document.getElementById("price").innerText=price;
+    price=document.getElementById("price").innerText=issue.value;
   }
 }
 
@@ -167,21 +222,38 @@ function setService(type){
   serviceType=type;
   doorstepBtn.classList.remove("active");
   pickupBtn.classList.remove("active");
-  if(type==="Doorstep") doorstepBtn.classList.add("active");
-  else pickupBtn.classList.add("active");
+  (type==="Doorstep"?doorstepBtn:pickupBtn).classList.add("active");
 }
 
-function getLocation(){
- navigator.geolocation.getCurrentPosition(async pos=>{
-  const lat=pos.coords.latitude,lon=pos.coords.longitude;
-  mapsLink=`https://maps.google.com/?q=${lat},${lon}`;
-  const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
-  const d=await r.json();
-  const pin=d.address.postcode||"";
-  if(!allowedPincodes.includes(pin)){alert("Service not available");return;}
-  area.value=d.address.suburb||"";
-  pincode.value=pin;
- });
+async function getLocation(){
+  locBtn.disabled=true;
+  loader.style.display="block";
+
+  navigator.geolocation.getCurrentPosition(async pos=>{
+    const lat=pos.coords.latitude,lon=pos.coords.longitude;
+    mapsLink=`https://maps.google.com/?q=${lat},${lon}`;
+
+    const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+    const d=await r.json();
+    const pin=d.address.postcode||"";
+
+    loader.style.display="none";
+    locBtn.disabled=false;
+
+    if(!allowedPincodes.includes(pin)){
+      alert("❌ Service not available in your area yet");
+      return;
+    }
+
+    area.value=d.address.suburb||"";
+    pincode.value=pin;
+    alert("✅ Service available in your location");
+  },
+  ()=>{
+    loader.style.display="none";
+    locBtn.disabled=false;
+    alert("Unable to detect location");
+  });
 }
 
 function sendWhatsApp(){
