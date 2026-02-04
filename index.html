@@ -6,253 +6,275 @@
 <title>FixMate – Laptop Repair Bangalore</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #f6f9fb;
-  color: #1f2933;
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:system-ui,Arial,sans-serif;
+  background:#F7F4F2;
+  color:#222;
 }
 
-.container {
-  max-width: 480px;
-  margin: auto;
-  padding: 14px;
+.container{
+  max-width:480px;
+  margin:auto;
+  padding:16px;
 }
 
-.card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+header{
+  text-align:center;
+  margin-bottom:18px;
+}
+header h1{
+  margin:0;
+  color:#7A1F2B;
+  letter-spacing:.3px;
+}
+header p{
+  font-size:14px;
+  color:#555;
 }
 
-h1 {
-  text-align: center;
-  color: #0f4c5c;
-  margin-bottom: 4px;
+.card{
+  background:#ffffff;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:0 10px 26px rgba(0,0,0,.08);
 }
 
-.subtitle {
-  text-align: center;
-  font-size: 14px;
-  color: #6b7280;
-  margin-bottom: 16px;
+.card h3{
+  margin:0 0 12px;
+  color:#7A1F2B;
+  font-size:16px;
 }
 
-.section {
-  margin-bottom: 14px;
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid #d1d5db;
+  background:#fafafa;
+  font-size:14px;
 }
 
-label {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  display: block;
+textarea{resize:none;height:80px;}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#7A1F2B;
+  color:#fff;
+  font-size:15px;
+  font-weight:500;
+  cursor:pointer;
 }
 
-input, select, textarea {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #d1d5db;
-  font-size: 14px;
-  box-sizing: border-box;
+button:disabled{
+  background:#cfa3a8;
+  cursor:not-allowed;
 }
 
-input:focus, select:focus, textarea:focus {
-  outline: none;
-  border-color: #0f4c5c;
-  box-shadow: 0 0 0 2px rgba(15,76,92,0.15);
+.toggle{
+  display:flex;
+  gap:10px;
+}
+.toggle button{
+  flex:1;
+  background:#f1e4e6;
+  color:#222;
+}
+.toggle button.active{
+  background:#7A1F2B;
+  color:#fff;
 }
 
-textarea {
-  resize: none;
+.priceBox{
+  background:#FCEEEE;
+  padding:12px;
+  border-radius:10px;
+  font-size:14px;
+  color:#7A1F2B;
 }
 
-button {
-  width: 100%;
-  background: #0f4c5c;
-  color: #ffffff;
-  padding: 14px;
-  border-radius: 14px;
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-}
+.small{font-size:13px;color:#666;}
 
-button:hover {
-  background: #0a3a47;
+.loader{
+  display:none;
+  text-align:center;
+  font-size:13px;
+  color:#9E2A2B;
+  margin-top:8px;
 }
-
-.small-text {
-  font-size: 12px;
-  color: #555;
-  margin-top: 6px;
+.loader span{
+  display:inline-block;
+  width:18px;
+  height:18px;
+  border:3px solid #e5c6c9;
+  border-top:3px solid #9E2A2B;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  vertical-align:middle;
+  margin-right:6px;
 }
-
-.loader {
-  font-size: 12px;
-  color: #555;
-  margin-top: 6px;
-  display: none;
-}
-
-.footer {
-  text-align: center;
-  font-size: 12px;
-  color: #6b7280;
-  margin-top: 14px;
+@keyframes spin{
+  to{transform:rotate(360deg);}
 }
 </style>
 </head>
 
 <body>
-
 <div class="container">
-  <div class="card">
 
-    <h1>FixMate</h1>
-    <div class="subtitle">Laptop Repair at Your Doorstep – Bangalore</div>
+<header>
+  <h1>FixMate</h1>
+  <p>Laptop Repair at Your Doorstep – Bangalore</p>
+</header>
 
-    <!-- NAME -->
-    <div class="section">
-      <label>Your Name</label>
-      <input id="name" placeholder="Enter your name">
-    </div>
+<div class="card">
+  <h3>Your Details</h3>
+  <input id="custName" placeholder="Your Name">
+  <input id="custPhone" placeholder="Mobile Number" value="7338214137">
+</div>
 
-    <!-- PROBLEM -->
-    <div class="section">
-      <label>Select Problem</label>
-      <select id="problem">
-        <option value="">-- Select --</option>
-        <option>No Power / Dead Laptop</option>
-        <option>No Display / Screen Issue</option>
-        <option>Battery / Charging Issue</option>
-        <option>Slow / Hanging</option>
-        <option>Keyboard / Touchpad Issue</option>
-        <option>OS / Software Issue</option>
-        <option>General Inspection</option>
-        <option>Other</option>
-      </select>
-      <div class="small-text">
-        🔧 Inspection charge ₹159 (adjusted if repair is done)
-      </div>
-    </div>
+<div class="card">
+  <h3>Select Problem</h3>
+  <select id="issue" onchange="updatePrice()">
+    <option value="">-- Select Laptop Issue --</option>
+    <option>General Inspection</option>
+    <option>No Power / Dead Laptop</option>
+    <option>No Display / Screen Issue</option>
+    <option>Battery / Charging Issue</option>
+    <option>Laptop Slow / Hanging</option>
+    <option>Keyboard / Touchpad Issue</option>
+    <option>Heating / Fan Noise</option>
+    <option>OS / Software Issue</option>
+    <option>Virus / Data Issue</option>
+    <option>Others</option>
+  </select>
 
-    <!-- ADDRESS -->
-    <div class="section">
-      <label>Full Address</label>
-      <textarea id="address" rows="3"
-        placeholder="Building / Apartment, Block, Flat No, Road"></textarea>
-    </div>
-
-    <!-- PINCODE -->
-    <div class="section">
-      <label>Pincode</label>
-      <input id="pincode" placeholder="Enter pincode">
-    </div>
-
-    <!-- DATE -->
-    <div class="section">
-      <label>Preferred Date</label>
-      <input type="date" id="date">
-    </div>
-
-    <!-- TIME -->
-    <div class="section">
-      <label>Preferred Time</label>
-      <select id="time">
-        <option>10 AM – 12 PM</option>
-        <option>12 PM – 2 PM</option>
-        <option>2 PM – 4 PM</option>
-        <option>4 PM – 6 PM</option>
-      </select>
-    </div>
-
-    <!-- LOCATION -->
-    <div class="section">
-      <button onclick="detectLocation()">Detect My Location</button>
-      <div class="loader" id="loader">Detecting location… please wait</div>
-    </div>
-
-    <!-- SUBMIT -->
-    <button onclick="sendWhatsApp()">Proceed on WhatsApp</button>
-
-    <div class="footer">
-      Service available only in selected Bangalore areas
-    </div>
-
+  <div class="priceBox" id="priceBox">
+    Inspection Charge: ₹159<br>
+    <span class="small">Adjusted in final bill if repair is done</span>
   </div>
 </div>
 
+<div class="card">
+  <h3>Service Type</h3>
+  <div class="toggle">
+    <button id="doorstepBtn" class="active" onclick="setService('Doorstep')">Doorstep</button>
+    <button id="pickupBtn" onclick="setService('Pickup')">Pickup & Drop</button>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Service Location</h3>
+  <button id="locBtn" onclick="getLocation()">📍 Detect My Location</button>
+  <div class="loader" id="loader">
+    <span></span>Detecting location…
+  </div>
+  <input id="area" placeholder="Area" readonly>
+  <input id="pincode" placeholder="Pincode" readonly>
+</div>
+
+<div class="card">
+  <h3>Full Address</h3>
+  <input id="building" placeholder="Building / Apartment">
+  <input id="flat" placeholder="Block / Flat">
+  <input id="street" placeholder="Street / Road">
+</div>
+
+<div class="card">
+  <h3>Schedule</h3>
+  <input type="date" id="date">
+  <select id="time">
+    <option>10 AM – 12 PM</option>
+    <option>12 PM – 2 PM</option>
+    <option>2 PM – 4 PM</option>
+    <option>4 PM – 6 PM</option>
+  </select>
+</div>
+
+<div class="card">
+  <button onclick="sendWhatsApp()">📲 Book via WhatsApp</button>
+</div>
+
+</div>
+
 <script>
-const allowedPincodes = [
-  "560066","560037","560035","560034","560095","560026"
-];
+const allowedPincodes=["560066","560067","560087","560037","560035","560103","560102","560034","560095","560100","560099","560048","560026"];
+let mapsLink="",serviceType="Doorstep";
 
-document.getElementById("date").valueAsDate =
-  new Date(Date.now() + 86400000);
+const tomorrow=new Date();
+tomorrow.setDate(tomorrow.getDate()+1);
+date.value=tomorrow.toISOString().split("T")[0];
 
-function detectLocation() {
-  const loader = document.getElementById("loader");
-  loader.style.display = "block";
-
-  if (!navigator.geolocation) {
-    alert("Location not supported");
-    loader.style.display = "none";
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-    () => {
-      loader.style.display = "none";
-      alert("Location detected. Please confirm pincode.");
-    },
-    () => {
-      loader.style.display = "none";
-      alert("Unable to detect location");
-    }
-  );
+function updatePrice(){
+  priceBox.style.display="block";
 }
 
-function sendWhatsApp() {
-  const name = document.getElementById("name").value.trim();
-  const problem = document.getElementById("problem").value;
-  const address = document.getElementById("address").value.trim();
-  const pincode = document.getElementById("pincode").value.trim();
-  const date = document.getElementById("date").value;
-  const time = document.getElementById("time").value;
+function setService(type){
+  serviceType=type;
+  doorstepBtn.classList.remove("active");
+  pickupBtn.classList.remove("active");
+  (type==="Doorstep"?doorstepBtn:pickupBtn).classList.add("active");
+}
 
-  if (!name || !problem || !address || !pincode) {
-    alert("Please fill all details");
-    return;
-  }
+async function getLocation(){
+  locBtn.disabled=true;
+  loader.style.display="block";
 
-  if (!allowedPincodes.includes(pincode)) {
-    alert("Currently unserviceable location");
-    return;
-  }
+  navigator.geolocation.getCurrentPosition(async pos=>{
+    const lat=pos.coords.latitude,lon=pos.coords.longitude;
+    mapsLink=`https://maps.google.com/?q=${lat},${lon}`;
 
-  const message =
-`New Laptop Service Booking – FixMate
+    const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+    const d=await r.json();
+    const pin=d.address.postcode||"";
 
-Name: ${name}
-Problem: ${problem}
+    loader.style.display="none";
+    locBtn.disabled=false;
+
+    if(!allowedPincodes.includes(pin)){
+      alert("❌ Service not available in your area yet");
+      return;
+    }
+
+    area.value=d.address.suburb||"";
+    pincode.value=pin;
+    alert("✅ Service available in your location");
+  },
+  ()=>{
+    loader.style.display="none";
+    locBtn.disabled=false;
+    alert("Unable to detect location");
+  });
+}
+
+function sendWhatsApp(){
+ const msg=`FixMate Booking
+Name: ${custName.value}
+Phone: ${custPhone.value}
+
+Issue: ${issue.options[issue.selectedIndex].text}
+Service: ${serviceType}
 Inspection Charge: ₹159
 
 Address:
-${address}
-Pincode: ${pincode}
+${building.value}, ${flat.value}
+${street.value}
+${area.value} - ${pincode.value}
 
-Preferred Date: ${date}
-Preferred Time: ${time}`;
+Date: ${date.value}
+Time: ${time.value}
 
-  const url =
-    "https://wa.me/917338214137?text=" +
-    encodeURIComponent(message);
+Map: ${mapsLink}
 
-  window.open(url, "_blank");
+${serviceType==="Pickup"?"Pickup invoice will be generated before collection":""}`;
+ window.open(`https://wa.me/917338214137?text=${encodeURIComponent(msg)}`);
 }
 </script>
 
