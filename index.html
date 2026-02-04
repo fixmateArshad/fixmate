@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Fixlyn – Laptop Repair at Doorstep in Bangalore</title>
-<meta name="description" content="Fixlyn provides professional laptop repair at your doorstep in Bangalore. Book trusted laptop service with transparent inspection charge ₹159.">
+<meta name="description" content="Fixlyn offers professional laptop repair at your doorstep in Bangalore. Transparent inspection charge ₹159. No platform fees, no commission.">
 <meta name="keywords" content="Laptop repair Bangalore, doorstep laptop service, Fixlyn laptop repair, laptop service near me">
 
 <style>
@@ -82,22 +82,6 @@ button:disabled{
   background:#9db1b3;
 }
 
-.toggle{
-  display:flex;
-  gap:10px;
-}
-
-.toggle button{
-  flex:1;
-  background:#e8eeed;
-  color:#1f2933;
-}
-
-.toggle button.active{
-  background:#354f52;
-  color:#fff;
-}
-
 .priceBox{
   background:#edf4f3;
   padding:12px;
@@ -133,6 +117,16 @@ button:disabled{
 }
 
 @keyframes spin{to{transform:rotate(360deg)}}
+
+.list{
+  padding-left:18px;
+  font-size:14px;
+  color:#374151;
+}
+
+.list li{
+  margin-bottom:8px;
+}
 </style>
 </head>
 
@@ -172,14 +166,6 @@ button:disabled{
 </div>
 
 <div class="card">
-  <h3>Service Type</h3>
-  <div class="toggle">
-    <button id="doorstepBtn" class="active" onclick="setService('Doorstep')">Doorstep</button>
-    <button id="pickupBtn" onclick="setService('Pickup & Drop')">Pickup & Drop</button>
-  </div>
-</div>
-
-<div class="card">
   <h3>Service Location</h3>
   <button id="locBtn" onclick="getLocation()">📍 Detect My Location</button>
   <div class="loader" id="loader"><span></span>Detecting location…</div>
@@ -206,6 +192,34 @@ button:disabled{
 </div>
 
 <div class="card">
+  <h3>Why Choose Fixlyn</h3>
+  <ul class="list">
+    <li>Pay less – <b>no platform fees</b></li>
+    <li><b>No extra taxes or hidden charges</b></li>
+    <li><b>No platform commission</b></li>
+    <li>Direct technician support</li>
+    <li>Transparent inspection charge (₹159)</li>
+    <li>Invoice provided for all repairs</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>What Happens After Booking?</h3>
+  <ul class="list">
+    <li>You book service via WhatsApp</li>
+    <li>Fixlyn technician confirms & inspects</li>
+    <li>Repair completed, invoice & warranty shared</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>Service Areas</h3>
+  <div class="small">
+    Whitefield, Marathahalli, Sarjapur Road, Bellandur, Koramangala & nearby areas in Bangalore.
+  </div>
+</div>
+
+<div class="card">
   <button onclick="sendWhatsApp()">📲 Book via WhatsApp</button>
 </div>
 
@@ -213,7 +227,7 @@ button:disabled{
 
 <script>
 const allowedPincodes=["560066","560067","560087","560037","560035","560103","560102","560034","560095","560100","560099","560048","560026"];
-let serviceType="Doorstep",mapsLink="";
+let mapsLink="";
 
 const tomorrow=new Date();
 tomorrow.setDate(tomorrow.getDate()+1);
@@ -221,13 +235,6 @@ date.value=tomorrow.toISOString().split("T")[0];
 
 function showPrice(){
   priceBox.style.display = issue.value ? "block" : "none";
-}
-
-function setService(type){
-  serviceType=type;
-  doorstepBtn.classList.remove("active");
-  pickupBtn.classList.remove("active");
-  (type==="Doorstep"?doorstepBtn:pickupBtn).classList.add("active");
 }
 
 async function getLocation(){
@@ -266,7 +273,6 @@ Name: ${custName.value}
 Phone: ${custPhone.value}
 
 Issue: ${issue.value}
-Service Type: ${serviceType}
 Inspection Charge: ₹159
 
 Address:
