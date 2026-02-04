@@ -1,2 +1,2 @@
-# fixmate
+# fixlyn
 Laptop Repair Bangalore 
