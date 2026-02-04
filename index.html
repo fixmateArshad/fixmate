@@ -8,30 +8,35 @@
 <style>
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f4f4f4;
-  color: #222;
+  font-family: "Segoe UI", sans-serif;
+  background: #f6f9fb;
+  color: #1f2933;
 }
 
 .container {
-  max-width: 420px;
-  margin: 20px auto;
+  max-width: 480px;
+  margin: auto;
+  padding: 14px;
+}
+
+.card {
   background: #ffffff;
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
 }
 
 h1 {
   text-align: center;
+  color: #0f4c5c;
   margin-bottom: 4px;
 }
 
 .subtitle {
   text-align: center;
   font-size: 14px;
-  color: #666;
-  margin-bottom: 20px;
+  color: #6b7280;
+  margin-bottom: 16px;
 }
 
 .section {
@@ -41,17 +46,23 @@ h1 {
 label {
   font-size: 13px;
   font-weight: 600;
-  display: block;
   margin-bottom: 6px;
+  display: block;
 }
 
 input, select, textarea {
   width: 100%;
-  padding: 11px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
   font-size: 14px;
   box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #0f4c5c;
+  box-shadow: 0 0 0 2px rgba(15,76,92,0.15);
 }
 
 textarea {
@@ -60,20 +71,21 @@ textarea {
 
 button {
   width: 100%;
+  background: #0f4c5c;
+  color: #ffffff;
   padding: 14px;
-  background: #1a1a1a;
-  color: white;
+  border-radius: 14px;
   border: none;
-  border-radius: 10px;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
 }
 
 button:hover {
-  background: #000;
+  background: #0a3a47;
 }
 
-.problem-note {
+.small-text {
   font-size: 12px;
   color: #555;
   margin-top: 6px;
@@ -82,14 +94,14 @@ button:hover {
 .loader {
   font-size: 12px;
   color: #555;
-  display: none;
   margin-top: 6px;
+  display: none;
 }
 
-.footer-note {
+.footer {
   text-align: center;
   font-size: 12px;
-  color: #777;
+  color: #6b7280;
   margin-top: 14px;
 }
 </style>
@@ -98,81 +110,89 @@ button:hover {
 <body>
 
 <div class="container">
-  <h1>FixMate</h1>
-  <div class="subtitle">Laptop Repair at Your Doorstep – Bangalore</div>
+  <div class="card">
 
-  <!-- NAME -->
-  <div class="section">
-    <label>Your Name</label>
-    <input id="name" placeholder="Enter your name">
-  </div>
+    <h1>FixMate</h1>
+    <div class="subtitle">Laptop Repair at Your Doorstep – Bangalore</div>
 
-  <!-- PROBLEM -->
-  <div class="section">
-    <label>Select Problem</label>
-    <select id="problem">
-      <option value="">-- Select --</option>
-      <option>No Power / Not Turning On</option>
-      <option>Screen Issue / No Display</option>
-      <option>Battery / Charging Issue</option>
-      <option>Slow / Hanging</option>
-      <option>Keyboard / Touchpad Issue</option>
-      <option>OS / Software Issue</option>
-      <option>General Inspection</option>
-      <option>Other</option>
-    </select>
-    <div class="problem-note">
-      🔧 Inspection charge ₹159 (adjusted in final bill if repair done)
+    <!-- NAME -->
+    <div class="section">
+      <label>Your Name</label>
+      <input id="name" placeholder="Enter your name">
     </div>
-  </div>
 
-  <!-- ADDRESS -->
-  <div class="section">
-    <label>Full Address</label>
-    <textarea id="address" rows="3" placeholder="Building / Apartment, Block, Flat No, Road"></textarea>
-  </div>
+    <!-- PROBLEM -->
+    <div class="section">
+      <label>Select Problem</label>
+      <select id="problem">
+        <option value="">-- Select --</option>
+        <option>No Power / Dead Laptop</option>
+        <option>No Display / Screen Issue</option>
+        <option>Battery / Charging Issue</option>
+        <option>Slow / Hanging</option>
+        <option>Keyboard / Touchpad Issue</option>
+        <option>OS / Software Issue</option>
+        <option>General Inspection</option>
+        <option>Other</option>
+      </select>
+      <div class="small-text">
+        🔧 Inspection charge ₹159 (adjusted if repair is done)
+      </div>
+    </div>
 
-  <!-- PINCODE -->
-  <div class="section">
-    <label>Pincode</label>
-    <input id="pincode" placeholder="e.g. 560026">
-  </div>
+    <!-- ADDRESS -->
+    <div class="section">
+      <label>Full Address</label>
+      <textarea id="address" rows="3"
+        placeholder="Building / Apartment, Block, Flat No, Road"></textarea>
+    </div>
 
-  <!-- DATE -->
-  <div class="section">
-    <label>Preferred Date</label>
-    <input type="date" id="date">
-  </div>
+    <!-- PINCODE -->
+    <div class="section">
+      <label>Pincode</label>
+      <input id="pincode" placeholder="Enter pincode">
+    </div>
 
-  <!-- TIME -->
-  <div class="section">
-    <label>Preferred Time</label>
-    <select id="time">
-      <option>10 AM – 12 PM</option>
-      <option>12 PM – 2 PM</option>
-      <option>2 PM – 4 PM</option>
-      <option>4 PM – 6 PM</option>
-    </select>
-  </div>
+    <!-- DATE -->
+    <div class="section">
+      <label>Preferred Date</label>
+      <input type="date" id="date">
+    </div>
 
-  <!-- LOCATION -->
-  <div class="section">
-    <button onclick="detectLocation()">Detect My Location</button>
-    <div class="loader" id="loader">Detecting location… please wait</div>
-  </div>
+    <!-- TIME -->
+    <div class="section">
+      <label>Preferred Time</label>
+      <select id="time">
+        <option>10 AM – 12 PM</option>
+        <option>12 PM – 2 PM</option>
+        <option>2 PM – 4 PM</option>
+        <option>4 PM – 6 PM</option>
+      </select>
+    </div>
 
-  <!-- SUBMIT -->
-  <button onclick="sendWhatsApp()">Proceed on WhatsApp</button>
+    <!-- LOCATION -->
+    <div class="section">
+      <button onclick="detectLocation()">Detect My Location</button>
+      <div class="loader" id="loader">Detecting location… please wait</div>
+    </div>
 
-  <div class="footer-note">
-    Service available only in selected Bangalore areas
+    <!-- SUBMIT -->
+    <button onclick="sendWhatsApp()">Proceed on WhatsApp</button>
+
+    <div class="footer">
+      Service available only in selected Bangalore areas
+    </div>
+
   </div>
 </div>
 
 <script>
-const allowedPincodes = ["560066","560037","560035","560034","560095","560026"];
+const allowedPincodes = [
+  "560066","560037","560035","560034","560095","560026"
+];
 
-document.getElementById("date").valueAsDate = new Date(Date.now() + 86400000);
+document.getElementById("date").valueAsDate =
+  new Date(Date.now() + 86400000);
 
 function detectLocation() {
   const loader = document.getElementById("loader");
@@ -184,13 +204,16 @@ function detectLocation() {
     return;
   }
 
-  navigator.geolocation.getCurrentPosition(pos => {
-    loader.style.display = "none";
-    alert("Location detected. Please confirm pincode manually.");
-  }, () => {
-    loader.style.display = "none";
-    alert("Unable to detect location");
-  });
+  navigator.geolocation.getCurrentPosition(
+    () => {
+      loader.style.display = "none";
+      alert("Location detected. Please confirm pincode.");
+    },
+    () => {
+      loader.style.display = "none";
+      alert("Unable to detect location");
+    }
+  );
 }
 
 function sendWhatsApp() {
@@ -212,19 +235,23 @@ function sendWhatsApp() {
   }
 
   const message =
-`New Laptop Service Booking
+`New Laptop Service Booking – FixMate
 
 Name: ${name}
 Problem: ${problem}
 Inspection Charge: ₹159
 
-Address: ${address}
+Address:
+${address}
 Pincode: ${pincode}
 
-Date: ${date}
-Time: ${time}`;
+Preferred Date: ${date}
+Preferred Time: ${time}`;
 
-  const url = "https://wa.me/917338214137?text=" + encodeURIComponent(message);
+  const url =
+    "https://wa.me/917338214137?text=" +
+    encodeURIComponent(message);
+
   window.open(url, "_blank");
 }
 </script>
