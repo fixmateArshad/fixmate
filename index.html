@@ -6,61 +6,37 @@
 <title>FixMate – Laptop Repair Bangalore</title>
 
 <style>
-*{ box-sizing:border-box; }
-
+*{box-sizing:border-box;}
 body{
   margin:0;
-  font-family:system-ui, Arial, sans-serif;
+  font-family:system-ui,Arial;
   background:#f3f4f2;
-  color:#222;
 }
-
 .container{
   max-width:480px;
   margin:auto;
   padding:16px;
 }
-
-header{
-  text-align:center;
-  margin-bottom:18px;
-}
-header h1{
-  margin:0;
-  color:#344e41;
-}
-header p{
-  font-size:14px;
-  color:#555;
-}
+header{text-align:center;margin-bottom:16px;}
+header h1{margin:0;color:#344e41;}
+header p{font-size:14px;color:#555;}
 
 .card{
-  background:#ffffff;
+  background:#fff;
   border-radius:16px;
   padding:16px;
   margin-bottom:16px;
-  box-shadow:0 10px 24px rgba(0,0,0,0.08);
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
 }
+.card h3{margin:0 0 12px;color:#3a5a40;}
 
-.card h3{
-  margin:0 0 12px 0;
-  color:#3a5a40;
-  font-size:17px;
-}
-
-input, select, textarea{
+input,select,textarea{
   width:100%;
   padding:12px;
   margin-bottom:12px;
   border-radius:10px;
-  border:1px solid #d1d5db;
-  font-size:14px;
+  border:1px solid #ccc;
   background:#fafafa;
-}
-
-textarea{
-  resize:none;
-  height:80px;
 }
 
 button{
@@ -71,30 +47,31 @@ button{
   background:#3a5a40;
   color:#fff;
   font-size:16px;
-  cursor:pointer;
-}
-button:hover{
-  background:#2d4732;
 }
 
-.small{
-  font-size:13px;
-  color:#666;
+.toggle{
+  display:flex;
+  gap:10px;
+}
+.toggle button{
+  flex:1;
+  background:#dde5dd;
+  color:#222;
+}
+.toggle button.active{
+  background:#3a5a40;
+  color:#fff;
 }
 
-.trust li{
-  list-style:none;
-  padding-left:24px;
-  margin-bottom:8px;
-  position:relative;
+.priceBox{
+  background:#edf3ed;
+  padding:12px;
+  border-radius:10px;
+  font-size:14px;
+  color:#2d4732;
 }
-.trust li::before{
-  content:"✔";
-  position:absolute;
-  left:0;
-  color:#3a5a40;
-  font-weight:bold;
-}
+
+.small{font-size:13px;color:#666;}
 </style>
 </head>
 
@@ -106,29 +83,39 @@ button:hover{
   <p>Laptop Repair at Your Doorstep – Bangalore</p>
 </header>
 
-<!-- CUSTOMER DETAILS -->
 <div class="card">
   <h3>Your Details</h3>
   <input id="custName" placeholder="Your Name">
   <input id="custPhone" placeholder="Mobile Number" value="7338214137">
 </div>
 
-<!-- PROBLEM -->
 <div class="card">
   <h3>Select Problem</h3>
-  <select id="issue">
-    <option value="">-- Select Laptop Issue --</option>
-    <option>No Power / Dead Laptop</option>
-    <option>Screen Issue / No Display</option>
-    <option>Laptop Slow / Hanging</option>
-    <option>Battery / Charging Issue</option>
-    <option>Keyboard / Touchpad Issue</option>
-    <option>OS / Software Problem</option>
-    <option>Others</option>
+  <select id="issue" onchange="updatePrice()">
+    <option value="">-- Select Issue --</option>
+    <option value="299">No Power / Dead Laptop</option>
+    <option value="399">Screen Issue / No Display</option>
+    <option value="199">Laptop Slow / Hanging</option>
+    <option value="299">Battery / Charging Issue</option>
+    <option value="249">Keyboard / Touchpad Issue</option>
+    <option value="199">OS / Software Problem</option>
+    <option value="199">Others</option>
   </select>
+
+  <div class="priceBox" id="priceBox" style="display:none;">
+    Estimated Inspection Charge: ₹<span id="price"></span><br>
+    <span class="small">Final repair cost after inspection</span>
+  </div>
 </div>
 
-<!-- LOCATION -->
+<div class="card">
+  <h3>Service Type</h3>
+  <div class="toggle">
+    <button id="doorstepBtn" class="active" onclick="setService('Doorstep')">Doorstep</button>
+    <button id="pickupBtn" onclick="setService('Pickup')">Pickup & Drop</button>
+  </div>
+</div>
+
 <div class="card">
   <h3>Service Location</h3>
   <button onclick="getLocation()">📍 Detect My Location</button>
@@ -136,20 +123,16 @@ button:hover{
   <input id="pincode" placeholder="Pincode" readonly>
 </div>
 
-<!-- ADDRESS -->
 <div class="card">
   <h3>Full Address</h3>
-  <input id="building" placeholder="Building / Apartment Name">
-  <input id="flat" placeholder="Block / Flat Number">
-  <input id="street" placeholder="Street / Cross / Road">
+  <input id="building" placeholder="Building / Apartment">
+  <input id="flat" placeholder="Block / Flat">
+  <input id="street" placeholder="Street / Road">
 </div>
 
-<!-- DATE & TIME -->
 <div class="card">
-  <h3>Preferred Schedule</h3>
-  <label class="small">Service Date</label>
+  <h3>Schedule</h3>
   <input type="date" id="date">
-  <label class="small">Time Slot</label>
   <select id="time">
     <option>10 AM – 12 PM</option>
     <option>12 PM – 2 PM</option>
@@ -158,98 +141,70 @@ button:hover{
   </select>
 </div>
 
-<!-- BOOK -->
 <div class="card">
   <button onclick="sendWhatsApp()">📲 Book via WhatsApp</button>
-</div>
-
-<!-- TRUST -->
-<div class="card">
-  <h3>Why Choose FixMate</h3>
-  <ul class="trust">
-    <li>Doorstep Laptop Service</li>
-    <li>Transparent Pricing</li>
-    <li>Invoice for Pickup</li>
-    <li>Trusted Local Technician</li>
-  </ul>
 </div>
 
 </div>
 
 <script>
-/* DEFAULT NEXT DAY */
-const dateInput = document.getElementById("date");
-const tomorrow = new Date();
+const allowedPincodes=["560066","560067","560087","560037","560035","560103","560102","560034","560095","560100","560099","560048","560026"];
+let mapsLink="",serviceType="Doorstep",price="";
+
+const tomorrow=new Date();
 tomorrow.setDate(tomorrow.getDate()+1);
-dateInput.value = tomorrow.toISOString().split("T")[0];
+date.value=tomorrow.toISOString().split("T")[0];
 
-/* ALLOWED PINCODES */
-const allowedPincodes = [
-  "560066","560067","560087","560037","560035",
-  "560103","560102","560034","560095",
-  "560100","560099","560048","560026"
-];
-
-let mapsLink = "";
-
-/* LOCATION */
-function getLocation(){
-  navigator.geolocation.getCurrentPosition(async pos=>{
-    const lat = pos.coords.latitude;
-    const lon = pos.coords.longitude;
-    mapsLink = `https://maps.google.com/?q=${lat},${lon}`;
-
-    const res = await fetch(
-      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
-    );
-    const data = await res.json();
-    const pincode = data.address.postcode || "";
-    const area =
-      data.address.suburb ||
-      data.address.neighbourhood ||
-      data.address.city_district ||
-      "";
-
-    if(!allowedPincodes.includes(pincode)){
-      alert("❌ Service not available in your area yet");
-      return;
-    }
-
-    document.getElementById("pincode").value = pincode;
-    document.getElementById("area").value = area;
-
-    alert("✅ Service available at your location");
-  },
-  ()=>alert("Unable to detect location"));
+function updatePrice(){
+  if(issue.value){
+    price=issue.value;
+    priceBox.style.display="block";
+    document.getElementById("price").innerText=price;
+  }
 }
 
-/* WHATSAPP */
+function setService(type){
+  serviceType=type;
+  doorstepBtn.classList.remove("active");
+  pickupBtn.classList.remove("active");
+  if(type==="Doorstep") doorstepBtn.classList.add("active");
+  else pickupBtn.classList.add("active");
+}
+
+function getLocation(){
+ navigator.geolocation.getCurrentPosition(async pos=>{
+  const lat=pos.coords.latitude,lon=pos.coords.longitude;
+  mapsLink=`https://maps.google.com/?q=${lat},${lon}`;
+  const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+  const d=await r.json();
+  const pin=d.address.postcode||"";
+  if(!allowedPincodes.includes(pin)){alert("Service not available");return;}
+  area.value=d.address.suburb||"";
+  pincode.value=pin;
+ });
+}
+
 function sendWhatsApp(){
-  const name = document.getElementById("custName").value;
-  const phone = document.getElementById("custPhone").value;
+ const msg=`FixMate Booking
+Name: ${custName.value}
+Phone: ${custPhone.value}
 
-  const msg =
-`FixMate Laptop Service Booking
-
-Name: ${name}
-Phone: ${phone}
-
-Issue: ${issue.value}
+Issue: ${issue.options[issue.selectedIndex].text}
+Service: ${serviceType}
+Estimated Charge: ₹${price}
 
 Address:
 ${building.value}, ${flat.value}
 ${street.value}
 ${area.value} - ${pincode.value}
 
-Service Date: ${date.value}
-Time Slot: ${time.value}
+Date: ${date.value}
+Time: ${time.value}
 
-Location:
-${mapsLink}`;
+Map: ${mapsLink}
 
-  window.open(
-    `https://wa.me/917338214137?text=${encodeURIComponent(msg)}`
-  );
+${serviceType==="Pickup"?"Pickup invoice will be generated before collection":""}`;
+ window.open(`https://wa.me/917338214137?text=${encodeURIComponent(msg)}`);
 }
 </script>
 
